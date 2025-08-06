@@ -3,7 +3,8 @@ This repository contains the code for the Global Soil Carbon Pre-trained Model (
 
 More details can be found in the paper:
 
-**Zhang et al. 2024. Regional-scale soil carbon predictions can be largely enhanced by transferring global-scale soil-environment relationships. (*In Prep.*)**
+**Zhang, L.**, Yang, L., Ma, Y., Zhu, A.-X., Wei, R., Liu, J., Greve, M.H., Zhou, C., 2025. Regional-scale soil carbon predictions can be enhanced by transferring global-scale soil–environment relationships. ***Geoderma*** 461, 117466.
+[https://doi.org/10.1016/j.geoderma.2025.117466](https://doi.org/10.1016/j.geoderma.2025.117466)
 
 ## Requirement
 - Python3
@@ -16,6 +17,10 @@ More details can be found in the paper:
 The Architecture of the Global Soil Carbon Pre-trained Model (GSoilCPM) is shown as the figure below. This foundation model for predicting soil organic carbon (SOC) is designed by using a deep learning framework with a structure that allows for differentiated processing environmental covariates influencing SOC based on soil formation theory. The model uses convolutional networks to extract the latent features from multiple 2-D covariate data for each input category separately, with adjustable window size to account for spatial context and resolution of inputs. These extracted features are concatenated together and processed through convolution and fully connected layers to extract their interactions, and then output the final predicted SOC. The global soil profile observations and remote sensing derived environmental covariates are collected as the global-scale database to support the training procedure of the model. The lighted arrow lines in orange represent that using backpropagation to optimize model parameters by minimizing the loss function generated from comparing the difference between predicted and observed SOC values.
 
 ![model_structure](./model_structure.jpg)
+
+## Global-to-regional modelling strategy
+ **Why GSoilCPM offers an effective modelling strategy for regional soil predictions?** As illustrated in the figure below, the background color gradient represents the variation of model accuracy in the hypothesis space (a searchable space of the model function). The optimal location indicates the best model function. Building a pre-trained global model to capture the general soil–environment relationships can help narrow the scope of searching regional-scale predictive function. The global-to-regional modelling strategy can reduce the risk of falling into local minima when fitting a machine learning (ML) model based on region data alone.
+![global2regional](./global-to-regional.jpg)
 
 ## Description of directories and files
 - **data (directory)**:
